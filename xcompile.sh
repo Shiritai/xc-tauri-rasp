@@ -66,9 +66,6 @@ while getopts ":a:che:p:n:" option; do
 done
 
 # argument to derive from settings
-IMG_NAME="${PROJECT}-${DEBIAN_VER}"
-echo $IMG_NAME
-
 if [ $RASP_ARCH = arm64 ]; then
     RASP_ARCH_LINKER=aarch64-linux-gnu
     COMPILE_TARGET=aarch64-unknown-linux-gnu
@@ -81,6 +78,7 @@ fi
 
 # parameter to construct x-compilation command
 XCOMPILE="cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
+IMG_NAME="${PROJECT}-${RASP_ARCH}-${DEBIAN_VER}"
 
 if ! docker image inspect "${IMG_NAME}" >/dev/null; then
     docker build -t ${IMG_NAME} \
