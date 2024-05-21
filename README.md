@@ -9,7 +9,7 @@ One can run `xcompile.sh -h` and see:
 ```bash
 Cross compile a rust tauri application to debian package for raspberry pi (armhf/arm64).
 
-Syntax: ./xcompile.sh [-c|h] [-e|n|p|a ARG]
+Syntax: ./xcompile.sh [-c|h] [-e|n|p|t|a ARG]
 
 Option:
   -e <DEBIAN_VERSION>
@@ -24,6 +24,9 @@ Option:
   -a <RASP_ARCH>
           to set architecture of raspberry pi
           default value: arm64
+  -t <TARGET_PATH>
+          to set path of compilation target path
+          default value is .
   -c      clean up all compilation targets before cross compile
           default not to clean up
   -h      show the help message
@@ -36,12 +39,13 @@ Situation:
 * Project name: `my_project`
 * Project path: `/path/to/my_project`
 * Raspberry pi architecture: `arm64` (ARMv8), e.g. Raspberry pi 4b
-* Raspberry Pi OS base, a.k.a. debian version: `bookworm` (debian 12)
+* Base of Raspberry Pi OS, a.k.a. debian version: `bookworm` (debian 12)
+* Path to get compilation result: `..` (parent directory of shell)
 
 One can cross compile a tauri app by running:
 
 ```bash
-./xcompile.sh -e bookworm -n my_project -p /path/to/my_project -a arm64
+./xcompile.sh -e bookworm -n my_project -p /path/to/my_project -a arm64 -t ..
 ```
 
 ## Prerequisite
