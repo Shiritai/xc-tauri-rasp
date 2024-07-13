@@ -53,7 +53,8 @@ RUN sudo apt install -y \
   libssl-dev \
   libgtk-3-dev \
   libayatana-appindicator3-dev \
-  librsvg2-dev
+  librsvg2-dev \
+  libasound2-dev
 
 # Install Tauri dependencies (arm64)
 RUN sudo apt update && \
@@ -62,7 +63,8 @@ RUN sudo apt update && \
   libssl-dev:${RASP_ARCH} \
   libgtk-3-dev:${RASP_ARCH} \
   libayatana-appindicator3-dev:${RASP_ARCH} \
-  librsvg2-dev:${RASP_ARCH}
+  librsvg2-dev:${RASP_ARCH} \
+  libasound2-dev:${RASP_ARCH}
 
 ENV PKG_CONFIG_SYSROOT_DIR=/usr/${RASP_ARCH_LINKER}/
 # -------------- [End of install tauri] ----------------
