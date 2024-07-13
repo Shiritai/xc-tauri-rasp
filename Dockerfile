@@ -32,7 +32,7 @@ RUN mkdir -p project
 # -------------- [Install tauri (host + arm64)] ----------------
 # Install base utils
 RUN sudo apt update && \
-  sudo apt install -y curl psmisc
+  sudo apt install -y curl psmisc npm
 
 RUN rustup target add ${COMPILE_TARGET} && \
   sudo apt install -y gcc-${RASP_ARCH_LINKER}
