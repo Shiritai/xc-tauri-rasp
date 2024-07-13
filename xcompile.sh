@@ -98,7 +98,7 @@ if ! docker image inspect "${IMG_NAME}" >/dev/null; then
         --build-arg RASP_ARCH="${RASP_ARCH}" \
         --build-arg RASP_ARCH_LINKER="${RASP_ARCH_LINKER}" \
         --build-arg COMPILE_TARGET="${COMPILE_TARGET}" \
-        . || { echo "error due to docker build image" && exit 1; }
+        ${SCRIPT_DIR} || { echo "error due to docker build image" && exit 1; }
 fi
 
 # --------- [ Cross compilation ] ---------
