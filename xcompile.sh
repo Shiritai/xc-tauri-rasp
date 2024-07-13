@@ -106,7 +106,7 @@ fi
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
 
-docker run --rm -it -v ./$PROJECT_PATH:$CN_WORK_DIR \
+docker run --rm -v ./$PROJECT_PATH:$CN_WORK_DIR \
     ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && $CLEANUP && $XCOMPILE"
 
 # --------- [ Copy result ] ---------
