@@ -86,7 +86,7 @@ else
 fi
 
 # parameter to construct x-compilation command
-XCOMPILE="cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
+XCOMPILE="sudo cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
 IMG_NAME="${PROJECT}-${RASP_ARCH}-${DEBIAN_VER}"
 
 # --------- [ Build image for x-compilation ] ---------
