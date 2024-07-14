@@ -105,6 +105,7 @@ fi
 
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
+sudo chown -R $(whoami) $PROJECT_PATH/.cargo
 
 ls -a $PROJECT_PATH
 # sudo chmod +w $PROJECT_PATH/Cargo.toml
