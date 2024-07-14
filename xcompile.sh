@@ -85,7 +85,7 @@ else
 fi
 
 # parameter to construct x-compilation command
-XCOMPILE="RUST_LOG=debug RUST_BACKTRACE=1 cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
+XCOMPILE="cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
 IMG_NAME="${PROJECT}-${RASP_ARCH}-${DEBIAN_VER}"
 
 # --------- [ Build image for x-compilation ] ---------
@@ -103,11 +103,9 @@ fi
 
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
-stat $PROJECT_PATH/Cargo.toml
-stat $PROJECT_PATH/src-tauri/Cargo.toml
 
 docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
-    ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && whoami && groups && stat Cargo.toml && stat src-tauri/Cargo.toml && $CLEANUP && $XCOMPILE"
+    ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && $CLEANUP && $XCOMPILE"
 
 # --------- [ Copy result ] ---------
 
