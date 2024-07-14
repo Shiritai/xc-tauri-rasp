@@ -106,8 +106,7 @@ fi
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
 
-ls $PROJECT_PATH
-sudo chown -R $(whoami) $PROJECT_PATH
+ls -a $PROJECT_PATH
 sudo chmod +w $PROJECT_PATH/Cargo.toml
 sudo chmod +w $PROJECT_PATH/src-tauri/Cargo.toml
 
@@ -116,4 +115,4 @@ docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
 
 # --------- [ Copy result ] ---------
 
-cp ./$PROJECT_PATH/target/$COMPILE_TARGET/release/bundle/deb/*.deb $TARGET_PATH
+cp $PROJECT_PATH/target/$COMPILE_TARGET/release/bundle/deb/*.deb $TARGET_PATH
