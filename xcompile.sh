@@ -114,7 +114,7 @@ ls -a $PROJECT_PATH
 # sudo chmod +w $PROJECT_PATH/src-tauri/Cargo.toml
 
 docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
-    ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && sudo chmod +w Cargo.toml && $CLEANUP && $XCOMPILE"
+    ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && stat Cargo.toml && stat src-tauri/Cargo.toml && $CLEANUP && $XCOMPILE"
 
 # --------- [ Copy result ] ---------
 
