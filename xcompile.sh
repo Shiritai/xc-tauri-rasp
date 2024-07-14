@@ -86,7 +86,7 @@ else
 fi
 
 # parameter to construct x-compilation command
-XCOMPILE="cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
+XCOMPILE="RUST_LOG=debug RUST_BACKTRACE=1 cargo tauri build --target ${COMPILE_TARGET} --bundles deb"
 IMG_NAME="${PROJECT}-${RASP_ARCH}-${DEBIAN_VER}"
 
 # --------- [ Build image for x-compilation ] ---------
@@ -106,6 +106,8 @@ fi
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
 sudo chown -R $(whoami) $PROJECT_PATH/.cargo
+stat $PROJECT_PATH/Cargo.toml
+stat $PROJECT_PATH/src-tauri/Cargo.toml
 
 ls -a $PROJECT_PATH
 # sudo chmod +w $PROJECT_PATH/Cargo.toml
