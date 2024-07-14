@@ -5,8 +5,7 @@
 SCRIPT_DIR=$(realpath $(dirname $0))
 
 # fixed arguments
-USERNAME=$(id -un)
-CN_WORK_DIR="/home/${USERNAME}/project" # working directory in container
+CN_WORK_DIR="/project" # working directory in container, constant
 
 help_info() {
     echo "Cross compile a rust tauri application to debian package for raspberry pi (armhf/arm64)."
@@ -93,7 +92,6 @@ IMG_NAME="${PROJECT}-${RASP_ARCH}-${DEBIAN_VER}"
 
 if ! docker image inspect "${IMG_NAME}" >/dev/null; then
     docker build -t ${IMG_NAME} \
-        --build-arg USERNAME="${USERNAME}" \
         --build-arg DEBIAN_VER="${DEBIAN_VER}" \
         --build-arg RASP_ARCH="${RASP_ARCH}" \
         --build-arg RASP_ARCH_LINKER="${RASP_ARCH_LINKER}" \
@@ -105,13 +103,8 @@ fi
 
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
-sudo chown -R $(whoami) $PROJECT_PATH/.cargo
 stat $PROJECT_PATH/Cargo.toml
 stat $PROJECT_PATH/src-tauri/Cargo.toml
-
-ls -a $PROJECT_PATH
-# sudo chmod +w $PROJECT_PATH/Cargo.toml
-# sudo chmod +w $PROJECT_PATH/src-tauri/Cargo.toml
 
 docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
     ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && whoami && groups && stat Cargo.toml && stat src-tauri/Cargo.toml && $CLEANUP && $XCOMPILE"
