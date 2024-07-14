@@ -106,13 +106,12 @@ fi
 # before x-compile, put configuration file to project
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
 
+ls $PROJECT_PATH
 sudo chown -R $(whoami) $PROJECT_PATH
-sudo chmod +w $(whoami) $PROJECT_PATH/Cargo.toml
-sudo chmod +w $(whoami) $PROJECT_PATH/Cargo.lock
-sudo chmod +w $(whoami) $PROJECT_PATH/src-tauri/Cargo.toml
-sudo chmod +w $(whoami) $PROJECT_PATH/src-tauri/Cargo.lock
+sudo chmod +w $PROJECT_PATH/Cargo.toml
+sudo chmod +w $PROJECT_PATH/src-tauri/Cargo.toml
 
-docker run --rm -v ./$PROJECT_PATH:$CN_WORK_DIR \
+docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
     ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && $CLEANUP && $XCOMPILE"
 
 # --------- [ Copy result ] ---------
