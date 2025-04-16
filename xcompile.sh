@@ -105,6 +105,7 @@ fi
 cp -r $SCRIPT_DIR/.cargo $PROJECT_PATH/
 
 docker run --rm -v $PROJECT_PATH:$CN_WORK_DIR \
+    -v $CN_WORK_DIR/node_modules \
     ${IMG_NAME} /bin/bash -c "cd $CN_WORK_DIR && $CLEANUP && $XCOMPILE"
 
 # --------- [ Copy result ] ---------
