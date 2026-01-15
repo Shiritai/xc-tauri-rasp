@@ -38,8 +38,13 @@ DEBIAN_VER="bookworm"
 RASP_ARCH="arm64"
 PROJECT_PATH="./project"
 PROJECT="project"
-CLEANUP="true"
 TARGET_PATH="."
+DO_CLEANUP="false"
+
+# load configuration if exists
+if [ -f ".xcompile" ]; then
+    source .xcompile
+fi
 
 # parse options
 while getopts ":a:che:p:n:t:" option; do
@@ -49,7 +54,7 @@ while getopts ":a:che:p:n:t:" option; do
         exit
         ;;
     c) # whether to cleanup before compile
-        CLEANUP="cargo clean"
+        DO_CLEANUP="true"
         ;;
     a) # architecture of raspberry pi
         RASP_ARCH=$OPTARG
@@ -72,6 +77,12 @@ while getopts ":a:che:p:n:t:" option; do
         ;;
     esac
 done
+# logic to determine cleanup
+if [ "$DO_CLEANUP" = "true" ]; then
+    CLEANUP="cargo clean"
+else
+    CLEANUP="true"
+fi
 
 # argument to derive from settings
 if [ $RASP_ARCH = arm64 ]; then

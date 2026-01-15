@@ -32,6 +32,29 @@ Option:
   -h      show the help message
 ```
 
+## Configuration
+
+You can create a `.xcompile` file in the same directory of `xcompile.sh` to configure the default values. A template with default values is provided in `.xcompile.example`.
+
+```bash
+cp .xcompile.example .xcompile
+# Edit .xcompile with your preferences
+```
+
+The file is sourced by the script, so you can use shell variables.
+
+```bash
+# Example .xcompile
+DEBIAN_VER="bullseye"
+RASP_ARCH="arm64" # arm64 or armhf
+PROJECT_PATH="../my-project"
+PROJECT="app"
+TARGET_PATH="./dist"
+DO_CLEANUP="true" # Set to "true" to enable cargo clean
+```
+
+CLI arguments will always override the values in `.xcompile`.
+
 ## Example
 
 Situation:
@@ -58,6 +81,11 @@ One can cross compile a tauri app by running:
 |:-:|:-:|:-:|
 |✅|Raspberry Pi 4 Model B|Raspberry Pi OS - Debian 11 (bullseye) aarch64|
 |✅|Raspberry Pi Zero 2 w|Raspberry Pi OS Lite - Debian 12 (bookworm) aarch64|
+
+
+## CI/CD Integration
+
+If you are looking for a GitHub Action to automate the build process, check out [xc-tauri-rasp-action](https://github.com/Shiritai/xc-tauri-rasp-action).
 
 ## Contribute
 

@@ -1,0 +1,23 @@
+# Default configuration for xc-tauri-rasp
+# Copy this file to .xcompile to enable persistent configuration.
+
+# Debian version of compilation environment
+# Available versions: bookworm (debian 12, default), bullseye (debian 11)
+DEBIAN_VER="bookworm"
+
+# Architecture of raspberry pi
+# Available values: arm64 (default), armhf
+RASP_ARCH="arm64"
+
+# Path of compilation target project
+PROJECT_PATH="./project"
+
+# Compilation target project name
+PROJECT="project"
+
+# Path of compilation target path (where .deb will be copied)
+TARGET_PATH="."
+
+# Whether to clean up all compilation targets before cross compile
+# Set to "true" to enable cargo clean
+DO_CLEANUP="false"
