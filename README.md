@@ -1,4 +1,6 @@
 # Rust Tauri ❤️ Raspberry Pi
+[English](README.md) | [繁體中文](README_zh-TW.md)
+
 
 Out-of-the-box tool that cross compile a rust tauri project for raspberry pi target.
 
